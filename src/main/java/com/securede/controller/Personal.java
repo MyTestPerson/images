@@ -1,6 +1,7 @@
 package com.securede.controller;
 
-import org.springframework.security.access.annotation.Secured;
+import com.securede.service.MyMethod;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -10,27 +11,20 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class Personal {
 
+    @Autowired
+    MyMethod myMethod;
+
 
     @GetMapping(value = "/personal")
     public ModelAndView personalGet () {
 
 
-        SecurityContext securityContext = SecurityContextHolder.getContext();
-
         ModelAndView modelAndView = new ModelAndView("/personal");
 
-        modelAndView.addObject("msg", myMsg());
+        modelAndView.addObject("msg", myMethod.myMsg() + " World !!!");
 
         return modelAndView;
 
-    }
-
-
-
-    @Secured(value = {"ROLE_ADMIN"})
-    private String myMsg() {
-
-        return "Hello USER!!!";
 
     }
 
