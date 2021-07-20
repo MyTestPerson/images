@@ -19,8 +19,7 @@ public class Personal {
 
         ModelAndView modelAndView = new ModelAndView("/personal");
 
-        modelAndView.addObject("msg", myMsg() + " " + securityContext.getAuthentication().
-                getAuthorities().iterator().next().getAuthority());
+        modelAndView.addObject("msg", myMsg());
 
         return modelAndView;
 
@@ -31,7 +30,7 @@ public class Personal {
     @Secured(value = {"ROLE_ADMIN"})
     private String myMsg() {
 
-        return "Hello ";
+        return "Hello USER!!!";
 
     }
 
