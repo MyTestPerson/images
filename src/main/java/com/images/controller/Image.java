@@ -32,8 +32,9 @@ public class Image {
     }
 
 
+    @ResponseBody
     @GetMapping(value = "/image2")
-    public @ResponseBody byte[] getImage2() throws IOException {
+    public byte[] getImage2() throws IOException {
         InputStream in = servletContext.getResourceAsStream("/WEB-INF/image/jackson.jpg");
         return IOUtils.toByteArray(in);
     }
@@ -54,7 +55,7 @@ public class Image {
     }
 
 
-    @ResponseBody()
+    @ResponseBody
     @GetMapping(value = "/image4")
     public Resource getImage4() {
 

@@ -17,6 +17,8 @@ import java.util.List;
 public class RootConfig implements WebMvcConfigurer {
 
 
+    // https://www.baeldung.com/spring-httpmessageconverter-rest
+
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         converters.add(byteArrayHttpMessageConverter());
@@ -38,7 +40,7 @@ public class RootConfig implements WebMvcConfigurer {
     }
 
     private List<MediaType> getSupportedMediaTypes() {
-        List<MediaType> list = new ArrayList<MediaType>();
+        List<MediaType> list = new ArrayList<>();
         list.add(MediaType.IMAGE_JPEG);
         list.add(MediaType.IMAGE_PNG);
         list.add(MediaType.APPLICATION_OCTET_STREAM);
