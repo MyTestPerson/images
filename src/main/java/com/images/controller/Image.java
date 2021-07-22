@@ -17,6 +17,8 @@ import java.io.InputStream;
 public class Image {
 
 
+    // https://www.baeldung.com/spring-httpmessageconverter-rest
+
     @Autowired
     ServletContext servletContext;
 
