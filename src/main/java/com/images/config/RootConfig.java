@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.ByteArrayHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.ResourceHttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -19,6 +20,7 @@ public class RootConfig implements WebMvcConfigurer {
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         converters.add(byteArrayHttpMessageConverter());
+        converters.add(resourceHttpMessageConverter());
     }
 
     @Bean
@@ -26,6 +28,13 @@ public class RootConfig implements WebMvcConfigurer {
         ByteArrayHttpMessageConverter arrayHttpMessageConverter = new ByteArrayHttpMessageConverter();
         arrayHttpMessageConverter.setSupportedMediaTypes(getSupportedMediaTypes());
         return arrayHttpMessageConverter;
+    }
+
+    @Bean
+    public ResourceHttpMessageConverter resourceHttpMessageConverter(){
+        ResourceHttpMessageConverter resourceHttpMessageConverter = new ResourceHttpMessageConverter();
+        resourceHttpMessageConverter.setSupportedMediaTypes(getSupportedMediaTypes());
+        return resourceHttpMessageConverter;
     }
 
     private List<MediaType> getSupportedMediaTypes() {
