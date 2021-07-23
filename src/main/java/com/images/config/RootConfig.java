@@ -6,6 +6,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.ByteArrayHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.ResourceHttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -23,6 +24,7 @@ public class RootConfig implements WebMvcConfigurer {
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         converters.add(byteArrayHttpMessageConverter());
         converters.add(resourceHttpMessageConverter());
+        converters.add(stringHttpMessageConverter());
     }
 
     @Bean
@@ -33,16 +35,24 @@ public class RootConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    public ResourceHttpMessageConverter resourceHttpMessageConverter(){
+    public ResourceHttpMessageConverter resourceHttpMessageConverter() {
         ResourceHttpMessageConverter resourceHttpMessageConverter = new ResourceHttpMessageConverter();
         resourceHttpMessageConverter.setSupportedMediaTypes(getSupportedMediaTypes());
         return resourceHttpMessageConverter;
+    }
+
+    @Bean
+    StringHttpMessageConverter stringHttpMessageConverter() {
+        StringHttpMessageConverter stringHttpMessageConverter = new StringHttpMessageConverter();
+        stringHttpMessageConverter.setSupportedMediaTypes(getSupportedMediaTypes());
+        return stringHttpMessageConverter;
     }
 
     private List<MediaType> getSupportedMediaTypes() {
         List<MediaType> list = new ArrayList<>();
         list.add(MediaType.IMAGE_JPEG);
         list.add(MediaType.IMAGE_PNG);
+        list.add(MediaType.TEXT_PLAIN);
         list.add(MediaType.APPLICATION_OCTET_STREAM);
         return list;
     }

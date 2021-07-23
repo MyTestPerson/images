@@ -16,6 +16,9 @@
 <a href="/image3"><b>Image 3</b></a><br><br>
 <a href="/image4"><b>Image 4</b></a><br><br>
 <a href="/image5"><b>Image 5</b></a><br><br>
+<a href="/get-text"><b>/get-text</b></a><br><br>
+<a href="/get-file"><b>/get-file</b></a><br><br>
+<a href="/get-image"><b>/get-image</b></a><br><br>
 
 
 </body>

@@ -23,6 +23,40 @@ public class Image {
     ServletContext servletContext;
 
 
+
+    @ResponseBody
+    @GetMapping(value = "/get-text", produces = "text/plain")
+    public String getText() {
+        return "Hello world";
+    }
+
+
+    @ResponseBody
+    @GetMapping(value = "/get-file", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    public byte[] getFile() throws IOException {
+
+        InputStream in = servletContext.getResourceAsStream("/WEB-INF/image/hello.txt");
+
+        return IOUtils.toByteArray(in);
+
+    }
+
+
+
+    @ResponseBody
+    @GetMapping(value = "/get-image", produces = MediaType.IMAGE_JPEG_VALUE)
+    public byte[] getImageWithMediaType() throws IOException {
+        InputStream in = servletContext.getResourceAsStream("/WEB-INF/image/jackson.jpg");
+        return IOUtils.toByteArray(in);
+    }
+
+
+
+
+
+
+
+
     @GetMapping(value = "/image1")
     public void getImage1(HttpServletResponse response) throws IOException {
 
